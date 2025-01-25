@@ -1,0 +1,12 @@
+{
+  "name": "api-rest-themoviesdb",
+  "version": "1.0.0",
+  "description": "Build, test, and deploy RESTful APIs using JavaScript. Perfect for beginners and pros! 🌟",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jhon R",
+  "license": "MIT"
+}
