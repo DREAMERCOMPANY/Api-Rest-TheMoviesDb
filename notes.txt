@@ -1,0 +1,16 @@
+Curso practico de API's:
+
+Objeto location:
+    Proporciona información de la URL actual.
+
+    href: URL completa.
+    pathname: Ruta del recurso.
+    hash: Fragmento después de #.
+    Hash Navigation:
+    Permite cambiar contenido sin recargar la página mediante el #.
+
+Evento hashchange:
+Se activa cuando el hash de la URL cambia.
+
+Mostrando y ocultando secciones:
+
