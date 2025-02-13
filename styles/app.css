@@ -190,7 +190,7 @@ button {
 
 .trendingPreview-movieList {
   overflow-x: scroll;
-  overflow-y: hidden;
+  overflow-y: auto;
   white-space: nowrap;
   height: 241px;
   padding-left: 24px;
@@ -221,7 +221,7 @@ button {
   margin-bottom: 8px;
   cursor: pointer;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: auto;
   text-overflow: ellipsis;
 }
 
@@ -257,6 +257,10 @@ button {
 
 
 /* Generic List (search, trending & category) */
+
+.main-container{
+  overflow: auto;
+}
 .genericList-container {
   display: flex;
   align-items: center;
@@ -321,7 +325,7 @@ button {
 .relatedMovies-scrollContainer {
   position: absolute;
   overflow-x: scroll;
-  overflow-y: hidden;
+  overflow-y: auto;
   white-space: nowrap;
   width: calc(100vw - 24px);
   padding-bottom: 16px;

@@ -13,4 +13,39 @@ Evento hashchange:
 Se activa cuando el hash de la URL cambia.
 
 Mostrando y ocultando secciones:
+-Se usan clases, elementos del Dom, eventos
+
+Buscador de peliculas:
+
+Historial de navegacion:
+-Funciones que se pueden usar para ir atras en el historial de navegación
+    . history.back()
+    . history.go(-1)
+    . window.back()
+
+PUNTOS CLAVES:
+-Antes de crear cualquier proyecto, primero se debe crear el diseño
+-Un single page application es un solo archivo HTML en donde se pueden mostrar muchas vistas
+-Si se quiere ocultar informacion sensible y no mostrarla en un repositorio publico de github se puede crear otro archivo aparte tipo 'secrets.js' y agregarlo a un .gitignore
+-Cuando hablamos de funcionalidad entre diferentes vistas se pueden crear diferentes archivos .JS para que el manejo sea mejor
+-Las funciones asyncronar se pueden hacer con: funciones asincronas (Async, await , res.json()), promesas  tipo .then .then .catch , tambien con axios que simplifica mucho la manera en la manejamos los headers, body, tipo de solicitud http , entre otros.
+- Axios es una libreria que se utiliza para simplificar la manera en la que hacemos una solicitud HTTP a una api (get,post, delete, put, patch)
+-Existen query parameters que son tipo ?limit=20 y endpoints que son /mueble/madera
+-Location.hash() se puede utilizar para mejorar como navegamos en nuestro archivo pues se puede crear un evento que detecte eso y dependiendo de el 'Hash' manipular el DOM o hacer algo.
+-con history.back() podemos lograr que el navegador retroceda en su historial y vaya hacia atras
+-Antes de insertar contenido en un elemento contendedor es recomendable limpiar su contenido tipo.. container.innerHTML = ''. esto asegura que cada vez que se le vuelva a meter a ese contenedro se vacie y no se vean datos duplicados en este mismo
+-Para que la pagina no se vaya toda hacia abajo se puede usar window.scrollto() o window.scrollTop(x,y)..
+-Dentro de una funcion asincrona se puede llamar otra funcion asincrona que a su vez se llama cuando se hace un cambio en location.hash() y esta funcion se ejecita en otra que detecta en evento de location.hash.startsWith('search='' ')
+-Se pueden manejar diferentes tipos de logica, funciones, metodos, solicitudes.Todo depende de lo que el cliente necesite y que funcionalidades quiere para sus usuarios.
+-Tambien se puede trabajar con modulos en JS. renombrando los archivos a .mjs y desde el html tipo index,html decirle en el script que el archivo es de type='module', tambien en el package.json colocar que es type='module'. esto asegura que se pueda importar y exportar los las diferentes funciones, metodos, variables que hay en cada archivo
+-Para exportar se puede asi export default createMovie().. don 'Default' solo se puede exportar una cosas pero con export {el, el ,el} se pueden exportar varios elementos de ese archivo. Ahora bien, si se quieren utilizar esos elementos que se exportaron en otro archiv, se puede isar un 'import' tipo.. import {createMovie()} from 'src/movie.js' tipo asi.. bueno, esto ayuda mucho a manejar la logica entre los diferentes archivos que se necesitan para el proyecto
+-En la parte de estilos se debe tener en cuenta que se deben definir variables para cada cosa(colores, espaciado, letra, grosor de letra) tener tambien en cuenta el comportamiento normal del documento pues desde esto se empiezan a cambiar los estilos en la pagina, tambien se pueden usar frameworks como Tailwind.css que ayudan a que la construccion de estilos sea mas rapida y efectiva.
+-Cabe mencionar que cuando se crea un proyecto ademas de el diseño, lo primero que tambien se debe hacer es crear un repositorio en guthub pues esto mostrar tu trabajo y en lo que estas trabajando para el proyecto, se deben manejar diferentes, commits, ramas, etc..
+-Bueno, en la parte de maquetacion cuando maquetamos un proyecto en un archivo html, se deben crear las diferentes secciones con contendores padres.. se debe ir desde algo general a algo muy especifio como animaciones, funcionalidades, efectos 3d entre otros.
+
+
+Diseño, github, git, estructura html, archivos .js o .mjs dependiendo, funcionalidades, llamados API, manipulacion del DOM
+
+
+    
 
