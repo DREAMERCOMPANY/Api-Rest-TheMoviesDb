@@ -46,6 +46,100 @@ PUNTOS CLAVES:
 
 Diseño, github, git, estructura html, archivos .js o .mjs dependiendo, funcionalidades, llamados API, manipulacion del DOM
 
+CACHE vs MEMORIA:
+-Como hacemos para que el internet vaya mas rapido, pero se puede utilizar el cache y la memoriatr
+-El cache es la forma en la que le decimos al navegador de que siempre nos traiga la ultima informacion del back-end
+-cache( default,no-store, reload,no-cache,force-cache, only-if-cache )
+-Memorization, nosotros en nuestro codigo JS podemos guardar esa informacion y validamos si hace falta volver a consumir esa API, se guardan los calculos que ya solicitamos para que no tengamos que volver a hacerla.
+-Memorization: 
+    -Crear un Objeto
+    -Preguntarle al objeto si ya tiene la informacion que estamos buscanso
+    -si si, usar la informacion
+    -Si no, hacer el fetch y guardar la informacion en el objeto
+-Se debe tener en cuenta que el codigo JS solo se va a guardar hasta que refresquemos la pagina
+-Guardar los calculos
+-¿Como sabemos que la informacion en el back-end no ha cambiado?
+-¿Nuestro cache o memorization esta desactualizada?.. Cual solucion sera la mejor
+-Creo que es mejor memorization, guardar toda la informacion en un objeto y usar el objeto en base a lo que se necesite.
 
-    
 
+Depuración de Caché y Red de un Navegador
+-El navegador almacena en caché las respuestas de las solicitudes HTTP a una API, lo que significa que no siempre realiza un nuevo fetch, sino que puede reutilizar los datos almacenados para acelerar la carga.
+-Para forzar una actualización completa y asegurarse de obtener la versión más reciente de la API, se puede usar Ctrl + F5 (Windows) o Cmd + Shift + R (Mac), lo que limpia la caché y recarga la página desde cero.
+-Dado que el navegador ya maneja el almacenamiento en caché de las respuestas HTTP, el uso de memoización en este proyecto podría no ser estrictamente necesario, ya que el navegador evita solicitudes innecesarias cuando la información ya está almacenada.
+-Sin embargo, si se necesita un control más preciso del almacenamiento de datos en memoria o evitar solicitudes repetidas en determinados escenarios, aún podría ser útil implementar memoización manualmente.
+
+
+Loading spinners vs loading skeletons:
+-las pantallas de carga son la solución que se utilizan para decirle al usuario que la informacion no esta disponible
+-Para las pantallas de carga hay distintas estrategias(Loading spinner y Loading skeletons)
+-Los usuarios odian esperar, cuando no carga rapido, se van. se pierde dinero.
+-No se puede dejar a los usuarios esperando, maximo 1 segundo, carga inmediata que no se demore mas de 3 2 segundos.
+-Los usuarios odian no tener el control, mostrar elementos que no son.
+-Si la informacion no les aparece rapidamente
+-Tenemos que hacerles entender a los usuarios que estamos cargando la informacion, que es rapido, que tienen el control y que van a obtener la informacion que realmente estan solicitando.
+-Los loading screens (pantallas de carga): Deben ser reconocibles al estado de carga
+-Hacer que la carga sea torelable o divertida
+-Desde el front-end hacer que el tiempo mientras carga la pagina sea divertida
+-La informacio no siempre esta disponible al instante
+-La pagina no se puede demorar mas de 2s en cargar, se pierde dinero.
+-Los usuarios tambien odian no tener el control
+
+Loading Screens:
+-Las pantallas de carga deben ser reconocibles(debe mostrarse la pantalla de carga y no una de error, por ejemplo)
+-La carga debe ser tolerable o incluso divertida, entre mas rapido carguemos, Mejor.
+-La carga debe ser tolerable y se debe hacer entender que se esta cargando la informacion
+-Los loading spinners son tipo rueditas que estan cargando la informacion
+-La ruedita no le hace ver a los usuarios que tienen el control, no es tolerable, no nos da la sensacion de control
+-De los loading spinners se pasan a las barritas que muestran el porcentaje de lo que lleva cargando
+-En la barrita ponen un tiempo hardcodeado para hacer esperar al usuario sabiendo cuanto tiempo se demora en cargar
+-Los loading skeletons serian la mejor opcion por que cumplen con las buenas practicas, nos muestra la estructura del html y una pequeña animacion de la informacion que se esta cargando
+-Vamos a usar Loding skeletons para mejorar la experiencia al usuario mientras carga la informacion de las peliculas de la API
+
+
+Intersection Observer:
+-Ayuda a mostrar las imagenes de los usuarios dependiendo de el scroll en el que el usuario este
+-Intersection oberver: nos permite observar cambios a medida que distintos elementos vayan apareciendo o desapareciendo
+-Crear una instancia del intersection observer, el intersection observer recibe dos argumentos(callback, observer), luego se debe crear un call back que tiene cada uno de los elementos o imagenes en donde se pueden activar , mostrar quitar etc
+-Cuando sepamos que las imagenes estan dentro de el area que queremos mostrar, llamamos al metodo observe que recibe el parametro target, entonces empieza a mostrar cada uno de los objetos o imagenes
+-Por defecto no se va a mostrar ninguna imagen pero cuando se agreguen al intersection observer se iran mostrando poco a poco.
+-Intersection observer recibe dos parametros, callback y options. intersectionObserver(callback, options)
+-Se puede implementar un intersection observer en cada uno de los contenedores de la pagina, lo que significa que pbservaria cada contenedor por separado, pero.. es ejor meter un intersection observer desde el root que seria el html, pues asi tendria mas alcance para observar cada uno de los elementos del DOM
+
+Creacion del interseccion observer:
+-Se crea el intersection observer
+-Isintersecting es una propiedad de objeto que devuelve intersection observer el cual comprueba si el elemento se esta viendo por los usuarios
+
+Imagenes por defecto:
+se hace detectando el evento error
+
+Scroll infinito vs paginacion:
+-Nuestra responsabilidad como front end es decidir cuando o no cargar informacion , por ejemplo usando el cache, se usa el intersection observer para no mostrar todas las imagenes de golpe y cuando se detecta el viewport se muestran en pantallas.
+-Paginacion: contenido organizado por paginas(en distintas URLS), cantidad fija de elementos por pagina, Navegacion con botones a cada pagina.
+-util para encontrar contenido especifico, estimar la cantidad de resultados, NO es tan adictivo
+-La paginacion funciona para tener resultados especificos:
+-Scroll infinito: Todo el contenido en la misma pagina, cantidad infinita de elementos por pagina , navegacion por scroll(mas scroll, mas contenido)
+-Problema de scroll infinito: Dificulta encontrar contenido especifico, Dificulta estimar la cantidad de resultados, hace sentir mal al footer
+-Es muy adictivo el scroll adictivo, Scroll > clicks
+-Casi todos los e-commerce tienen paginacion por que da control de resultados pero si se va a una red social el scroll va a seguir siendo infinito
+-Por eso el scroll infinito es adictivo, por que no se sabe que otros mas resultados hay.. da curiosidad seguir scrolleando.
+-Para platzi movies en mobile usar scroll infinito, en desktop usar paginacion
+
+Boton de cargar mas:
+-Se va a implementar infinte scrolling, consumir la API de forma paginada, un boton al que se le va 
+
+Guardando peliculas en local Storage:
+-LocalStorage es una instancia de un prototipo Storage
+-Es tipo un objeto
+-Funciona como un objeto, se le deben dar nombres claves del valor que se quiere guardar
+-Es tipo un objeto en JS, pero no se va a borrar la informacion
+-getItem(obtener elemento del localStorage), setItem(crear elemento en local storage), removeItem(Eliminar elemento del localStorage)
+-En localStorage no podemos guardar ni objetos ni strings
+-Hay dos metodos que nos ayudan a solucion el problema de no poder guardar ni objetos ni arreglos en localStorage, Json.parse y Json.stringify
+-Json.stringify nos ayuda a pasar de objetos a strings y JSON.parse de strings a objetos.
+
+Guardar peliculas en localStorage:
+-Segmentar problema en cosas pequeñas:
+-manera de guardar las peliculas: {'liked_movies': {//Objeto con cada uno de los atributos de las peliculas}, {}, {}, {}}
+-Donde llamar la funcion: cuando se crea una pelicula , en donde se esta creando el boton de like de cada pelicula
+ 

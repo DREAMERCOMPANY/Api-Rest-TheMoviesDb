@@ -8,7 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&family=Red+Hat+Display:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/app.css" />
+  <link rel="stylesheet" href="./styles/loader.css">
+  <link rel="stylesheet" href="./styles/app.css">
+  
 
   <title>PlatziMovies</title>
 </head>
@@ -25,22 +27,23 @@
         <button id="searchBtn">🔍</button>
       </form>
     </header>
+
+    <article id="languages">
+      <select name="" id="languageoptions"></select>
+    </article>
   
     <section id="trendingPreview" class="trendingPreview-container">
       <div class="trendingPreview-header">
-        <h2 class="trendingPreview-title">Tendencias</h2>
-        <button class="trendingPreview-btn">Ver más</button>
+        <h2 id="titlePreview" class="trendingPreview-title trendingPreview-title--loading"></h2>
+        <button id="btnTrending" class="trendingPreview-btn trendingPreview-btn--loading"></button>
       </div>
   
-      <article class="trendingPreview-movieList">
-        <!-- <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div> -->
-  
+      <article id="trendingPreview" class="trendingPreview-movieList">
+       
+        <div class="movie-container__loading"></div>
+        <div class="movie-container__loading"></div>
+        <div class="movie-container__loading"></div>
+        
   
       </article>
   
@@ -62,34 +65,54 @@
   
     </section>
   
+
+    <section id="liked" class="liked-container ">
+      <div class="liked-header">
+        <h2 class="liked-title">Favourites movies</h2>
+      </div>
+
+      <article class="liked-content">
+        <div class="liked-container">
+          <img class="liked-img"
+           alt="A Complete Unknown"  
+           src="https://i.pinimg.com/736x/ca/d6/3a/cad63a1bddd97023cf2e3160b9c1be65.jpg">
+          </div>
+
+          <div class="liked-container">
+            <img class="liked-img"
+             alt="A Complete Unknown"  
+             src="https://i.pinimg.com/736x/ca/d6/3a/cad63a1bddd97023cf2e3160b9c1be65.jpg">
+            </div>
+
+            <div class="liked-container">
+              <img class="liked-img"
+               alt="A Complete Unknown"  
+               src="https://i.pinimg.com/736x/ca/d6/3a/cad63a1bddd97023cf2e3160b9c1be65.jpg">
+              </div>
+
+              <div class="liked-container">
+                <img class="liked-img"
+                 alt="A Complete Unknown"  
+                 src="https://i.pinimg.com/736x/ca/d6/3a/cad63a1bddd97023cf2e3160b9c1be65.jpg">
+                </div>
+
+                <div class="liked-container">
+                  <img class="liked-img"
+                   alt="A Complete Unknown"  
+                   src="https://i.pinimg.com/736x/ca/d6/3a/cad63a1bddd97023cf2e3160b9c1be65.jpg">
+                  </div>
+
+      </article>
+
+      
+
+    </section>
   
   
     <section id="genericList" class="genericList-container inactive">
-      <div class="movie-container">
-        <img
-          src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-          class="movie-img"
-          alt="Nombre de la película"
-        />
-      </div>
-  
-      <div class="movie-container">
-        <img
-          src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-          class="movie-img"
-          alt="Nombre de la película"
-        />
-      </div>
-  
-      <div class="movie-container">
-        <img
-          src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-          class="movie-img"
-          alt="Nombre de la película"
-        />
-      </div>
     </section>
   
+
     <section id="movieDetail" class="movieDetail-container inactive">
       <h1 class="movieDetail-title">Deadpool</h1>
       <span class="movieDetail-score">7.6</span>
@@ -117,29 +140,14 @@
         <h2 class="relatedMovies-title">Películas similares</h2>
   
         <div class="relatedMovies-scrollContainer">
-          <div class="movie-container">
+          <!-- <div class="movie-container">
             <img
               src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
               class="movie-img"
               alt="Nombre de la película"
             />
-          </div>
-          
-          <div class="movie-container">
-            <img
-              src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-              class="movie-img"
-              alt="Nombre de la película"
-            />
-          </div>
-          
-          <div class="movie-container">
-            <img
-              src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-              class="movie-img"
-              alt="Nombre de la película"
-            />
-          </div>
+          </div> -->
+        
         </div>
       </article>
     </section>
@@ -148,8 +156,9 @@
   </section>
   
   
-  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
   <script type="module" src="./src/navigation.mjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+
 
   
 </body>
