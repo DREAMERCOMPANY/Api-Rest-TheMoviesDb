@@ -8,7 +8,9 @@ const domElements = [
             'movieDetailSection': document.querySelector('#movieDetail'),
             'movieDetailContainer': document.querySelector('#categoriesPreview .categoriesPreview-list'),
             'trendingPreviewMoviesContainer': document.querySelector('#trendingPreview .trendingPreview-movieList'),
-            'likedMoviesContainer':  document.querySelector('#liked')
+            'likedMoviesContainer':  document.querySelector('#liked'),
+            'mainContainer': document.querySelector('.main-container'),
+            'footer': document.querySelector('footer')
         }
         
     },
@@ -27,6 +29,8 @@ const domElements = [
     {
         'elements':{
             'headerTitle' : document.querySelector('.header-title'),
+            'headerSubtitle': document.querySelector('.header--subtitle'),
+            'separator': document.querySelectorAll('.separator'),
             'arrowBtn' : document.querySelector('.header-arrow'),
             'headerCategoryTitle' : document.querySelector('.header-title--categoryView'),
             'searchFormInput' : document.querySelector('#searchForm input'),

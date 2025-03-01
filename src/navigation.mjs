@@ -1,13 +1,78 @@
-import { getCategoriesPreview ,getTrendingMoviesPreview , getLanguages ,getMoviesByCategory,getMoviesBysearch, getTrendingMovies, getMovieDetailById, getPaginatedTrendingMovies, getPaginatedMoviesBySearch, getPaginatedMoviesByCategory, getLikedMovies} from './main.mjs'
+import { getCategoriesPreview ,getTrendingMoviesPreview , getLanguages ,getMoviesByCategory,getMoviesBysearch, getTrendingMovies, getMovieDetailById, getPaginatedTrendingMovies, getPaginatedMoviesBySearch, getPaginatedMoviesByCategory, getLikedMovies, validateLikedContainer} from './main.mjs'
 
 import domElements from './nodes.mjs'
+
+//Carrusel
+
+
+
+
+
+function carrouselScroll(container) {
+    // Busca las flechas dentro del contenedor específico
+    const leftArrow = container.parentElement.querySelector('.left-arrow');
+    const rightArrow = container.parentElement.querySelector('.right-arrow');
+  
+    // Limpia los eventos anteriores (para evitar acumulación)
+    leftArrow?.removeEventListener('click', leftHandler);
+    rightArrow?.removeEventListener('click', rightHandler);
+  
+    // Definimos los manejadores de evento
+    function leftHandler() {
+      //alert('⬅️ Desplazando a la izquierda');
+      container.scrollBy({
+        left: -container.offsetWidth,
+        behavior: 'smooth',
+      });
+    }
+  
+    function rightHandler() {
+      //alert('➡️ Desplazando a la derecha');
+      container.scrollBy({
+        left: container.offsetWidth,
+        behavior: 'smooth',
+      });
+    }
+  
+    // Asociamos los eventos
+    leftArrow?.addEventListener('click', leftHandler);
+    rightArrow?.addEventListener('click', rightHandler);
+  }
+  
+  
+
+  
+  
+
+
+const inputElement = document.getElementById('searchInput');
+const inputContainer = document.querySelector('.input-container');
+
+// Evento cuando el input recibe el foco
+inputElement.addEventListener('focus', function() {
+  inputContainer.classList.add('focused');
+});
+
+// Evento cuando el input pierde el foco
+inputElement.addEventListener('blur', function() {
+  inputContainer.classList.remove('focused');
+});
+
+
+
 
 let infiniteScrolling;
 
 //window.addEventListener('scroll', infiniteScrolling)
 window.addEventListener('DOMContentLoaded', ()=> {
+    
     navigator()
     getLanguages()
+    
+    getLikedMovies()
+    validateLikedContainer()
+    
+   
     //scroll()
     
     //console.log(mainContent);
@@ -37,8 +102,8 @@ function loadersSkeleton(){
     setTimeout(()=>{
         titlePreview.classList.remove('trendingPreview-title--loading')
         titlePreview.innerText = 'Tendencias'
-        btnTrending.classList.remove('trendingPreview-btn--loading')
-        btnTrending.innerText = 'Ver más'
+        //btnTrending.classList.remove('trendingPreview-btn--loading')
+        //btnTrending.innerText = 'Ver más'
     }, 200)
 }
 
@@ -82,6 +147,7 @@ domElements.forEach(dom => {
 
 function navigator(){
     loadersSkeleton()
+    
 
     if(infiniteScrolling){
         window.removeEventListener('scroll', infiniteScrolling, {passive:false})
@@ -116,6 +182,11 @@ function getHomePage(){
         
 
         const headerSection = element.sections?.headerSection;
+        const footer = element.sections?.footer
+
+        if(footer){
+            footer.style.background = 'transparent'
+        }
 
         if (headerSection) {
             headerSection.classList.remove('header-container--long');
@@ -125,6 +196,8 @@ function getHomePage(){
         element.elements?.arrowBtn.classList.add('inactive')
         element.elements?.arrowBtn.classList.remove('header-arrow--white')
         element.elements?.headerTitle.classList.remove('inactive')
+        element.elements?.headerSubtitle.classList.remove('inactive')
+        element.elements?.separator.forEach(el => {el.classList.remove('inactive')})
         element.elements?.headerCategoryTitle.classList.add('inactive')
         element.listContainers?.searchForm.classList.remove('inactive')
 
@@ -162,6 +235,8 @@ function getCategoriesPage(){
         element.elements?.arrowBtn.classList.remove('inactive')
         element.elements?.arrowBtn.classList.remove('header-arrow--white')
         element.elements?.headerTitle.classList.add('inactive')
+        element.elements?.headerSubtitle.classList.add('inactive')
+        element.elements?.separator.forEach(el => {el.classList.add('inactive')})
         element.elements?.headerCategoryTitle.classList.remove('inactive')
         element.listContainers?.searchForm.classList.add('inactive')
 
@@ -209,18 +284,34 @@ function getMovieDetailsPage(){
             headerSection.classList.add('header-container--long');
             //headerSection.style.background = 'none';
             }
+
+            const footer = element.sections?.footer
+
+        if(footer){
+            footer.style.background = '#2B332D'
+        }
         
         element.elements?.arrowBtn.classList.remove('inactive')
         element.elements?.arrowBtn.classList.add('header-arrow--white')
         element.elements?.headerTitle.classList.add('inactive')
+        element.elements?.headerSubtitle.classList.add('inactive')
+        element.elements?.separator.forEach(el => {el.classList.add('inactive')})
         element.elements?.headerCategoryTitle.classList.add('inactive')
         element.listContainers?.searchForm.classList.add('inactive')
 
         element.sections?.trendingPreviewSection.classList.add('inactive')
         element.sections?.likedMoviesContainer.classList.add('inactive')
+       
+
         element.sections?.categoriesPreviewSection.classList.add('inactive')
         element.sections?.genericSection.classList.add('inactive')
         element.sections?.movieDetailSection.classList.remove('inactive')
+
+        // ✅ Validar si mainContainer existe antes de acceder a style
+        if (element.sections?.mainContainer) {
+            element.sections.mainContainer.style.position = 'static';
+            
+        }
     })
 }
 
@@ -249,6 +340,8 @@ function getSearchPage(){
         element.elements?.arrowBtn.classList.remove('inactive')
         element.elements?.arrowBtn.classList.remove('header-arrow--white')
         element.elements?.headerTitle.classList.add('inactive')
+        element.elements?.headerSubtitle.classList.add('inactive')
+        element.elements?.separator.forEach(el => {el.classList.add('inactive')})
         element.elements?.headerCategoryTitle.classList.add('inactive')
         element.listContainers?.searchForm.classList.remove('inactive')
 
@@ -309,7 +402,7 @@ function trendsPage(){
     infiniteScrolling = getPaginatedTrendingMovies
 }
 
-export default homePage
+export {homePage, carrouselScroll} 
 
 
 

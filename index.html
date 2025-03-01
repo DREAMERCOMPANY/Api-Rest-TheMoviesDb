@@ -5,53 +5,70 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&family=Red+Hat+Display:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/loader.css">
   <link rel="stylesheet" href="./styles/app.css">
   
 
-  <title>PlatziMovies</title>
+  <title>Movie Market</title>
 </head>
 <body>
 
   <section class="main-container">
-    <header id="header" class="header-container">
-      <span class="header-arrow inactive">&lt;</span>
-      <h1 class="header-title">PlatziMovies</h1>
-      <h1 class="header-title header-title--categoryView inactive">Acción</h1>
-  
-      <form id="searchForm" class="header-searchForm">
-        <input id="searchInput" type="text" placeholder="Vengadores" />
-        <button id="searchBtn">🔍</button>
-      </form>
-    </header>
 
-    <article id="languages">
+    <section class="header--content">
+      <header id="header" class="header-container">
+        <span class="header-arrow inactive">&lt;</span>
+        <h1 class="header-title">Market Movies</h1>
+        <p class="header--subtitle">We deliver the best movies currently dominating the market. With real-time updates on trending films, top ratings, and the latest releases, it gives you instant access to the hottest titles. Perfect for movie lovers looking to stay ahead of the curve and discover what’s making waves in the cinema world.</p>
+        <h1 class="header-title header-title--categoryView inactive">Acción</h1>
+    
+        <form id="searchForm" class="header-searchForm">
+          <div class="input-container">
+            <input id="searchInput" type="text" placeholder="Search Something"/>
+            <button id="searchBtn">🔍</button>
+          </div>
+        </form>
+      </header>
+
+
+
+
+      <article id="trendingPreview" class="trendingPreview-container">
+        <div class="trendingPreview-header">
+          <h2 id="titlePreview" class="trendingPreview-title trendingPreview-title--loading"></h2>
+        </div>
+        <div class="carousel-wrapper">
+          <button class="carousel-arrow left-arrow">‹</button>
+          <article class="trendingPreview-movieList">
+            <!-- Aquí se muestran las películas o el loader skeleton -->
+            <div class="movie-container__loading"></div>
+            <div class="movie-container__loading"></div>
+            <div class="movie-container__loading"></div>
+            <div class="movie-container__loading"></div>
+            <div class="movie-container__loading"></div>
+            <!-- Puedes tener más elementos si lo requieres -->
+          </article>
+          <button class="carousel-arrow right-arrow">›</button>
+        </div>
+      </article>
+
+      <div class="separator"></div>
+
+    </section>
+    
+
+    <article id="languages" >
       <select name="" id="languageoptions"></select>
     </article>
   
-    <section id="trendingPreview" class="trendingPreview-container">
-      <div class="trendingPreview-header">
-        <h2 id="titlePreview" class="trendingPreview-title trendingPreview-title--loading"></h2>
-        <button id="btnTrending" class="trendingPreview-btn trendingPreview-btn--loading"></button>
-      </div>
   
-      <article id="trendingPreview" class="trendingPreview-movieList">
-       
-        <div class="movie-container__loading"></div>
-        <div class="movie-container__loading"></div>
-        <div class="movie-container__loading"></div>
-        
-  
-      </article>
-  
-  
-    </section>
-  
+
     <section id="categoriesPreview" class="categoriesPreview-container">
       <h2 class="categoriesPreview-title">Categorías</h2>
+      <p class="categoriesPreview-subtitle">Sumérgete en un mundo de cine organizado por categorías, donde podrás explorar cada género y descubrir las películas más recientes, los clásicos inolvidables y las próximas novedades que no te puedes perder.</p>
   
       <article class="categoriesPreview-list">
         <!-- <div class="category-container">
@@ -64,6 +81,8 @@
   
   
     </section>
+
+    <div class="separator"></div>
   
 
     <section id="liked" class="liked-container ">
@@ -71,38 +90,19 @@
         <h2 class="liked-title">Favourites movies</h2>
       </div>
 
-      <article class="liked-content">
-        <div class="liked-container">
-          <img class="liked-img"
-           alt="A Complete Unknown"  
-           src="https://i.pinimg.com/736x/ca/d6/3a/cad63a1bddd97023cf2e3160b9c1be65.jpg">
-          </div>
+      <div class="liked-wrapper">
 
-          <div class="liked-container">
-            <img class="liked-img"
-             alt="A Complete Unknown"  
-             src="https://i.pinimg.com/736x/ca/d6/3a/cad63a1bddd97023cf2e3160b9c1be65.jpg">
-            </div>
+        <button class="carousel-arrow left-arrow">‹</button>
 
-            <div class="liked-container">
-              <img class="liked-img"
-               alt="A Complete Unknown"  
-               src="https://i.pinimg.com/736x/ca/d6/3a/cad63a1bddd97023cf2e3160b9c1be65.jpg">
-              </div>
+        <article class="liked-content">
 
-              <div class="liked-container">
-                <img class="liked-img"
-                 alt="A Complete Unknown"  
-                 src="https://i.pinimg.com/736x/ca/d6/3a/cad63a1bddd97023cf2e3160b9c1be65.jpg">
-                </div>
+        </article>
 
-                <div class="liked-container">
-                  <img class="liked-img"
-                   alt="A Complete Unknown"  
-                   src="https://i.pinimg.com/736x/ca/d6/3a/cad63a1bddd97023cf2e3160b9c1be65.jpg">
-                  </div>
+        <button class="carousel-arrow right-arrow">›</button>
 
-      </article>
+      </div>
+
+      
 
       
 
@@ -138,17 +138,27 @@
   
       <article class="relatedMovies-container">
         <h2 class="relatedMovies-title">Películas similares</h2>
-  
-        <div class="relatedMovies-scrollContainer">
-          <!-- <div class="movie-container">
-            <img
-              src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-              class="movie-img"
-              alt="Nombre de la película"
-            />
-          </div> -->
+
+        <!--Implementar carrusel de imagenes-->
+
         
+        <div class="relatedMoviesContent">
+
+          <button class="carousel-arrow left-arrow">‹</button>
+        
+          <article class="relatedMovies-scrollContainer">
+          </article>
+        
+        <button class="carousel-arrow right-arrow">›</button>
+
         </div>
+        
+
+        
+  
+        
+
+
       </article>
     </section>
   

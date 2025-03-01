@@ -2,41 +2,42 @@
 * { box-sizing: border-box; }
 
 :root {
-  --purple-light-1: #FBFAFB;
-  --purple-light-2: #EEEAF2;
-  --purple-medium-1: #AA83C8;
-  --purple-medium-2: #8B48BF;
-  --purple-medium-3: #5C218A;
-  --purple-dark-1: #3E0F64;
-  --purple-dark-2: #2A0646;
+  --primary: #24CA48;
+  --secondary: #37A04E;
+  --accent: #02F536;
+  --dark-1: #3C7548;
+  --dark-2: #334B38;
+  --dark-3: #2B332D;
+  --white: #F5F5F5;
+  --dark:#1A1A1A;
 
-  --yellow: #EECC75;
-  --green: #CAD297;
-  --aqua: #B7EAC5;
-  --lightBlue: #A2EEE5;
-  --darkBlue: #8EA2EA;
-  --red: #F09D9D;
+  --primary-light: #5CE077;    /* Verde claro (derivado de primary) */
+--secondary-light: #56C47C;  /* Verde medio (derivado de secondary) */
+--accent-dark: #018B28;      /* Verde oscuro (derivado de accent) */
+--dark-green: #1F4D35;       /* Verde profundo (nuevo tono oscuro) */
+--dark-olive: #475F49;       /* Oliva oscuro (nuevo tono apagado) */
+--emerald: #44D160;          /* Verde esmeralda (luminoso y llamativo) */
 
-  --font-family-titles: 'Dosis', sans-serif;
-  --font-family-text: 'Red Hat Display', sans-serif;
-  --font-weight-title1: 800;
-  --font-weight-title2: 700;
-  --font-weight-text1: 400;
-  --font-weight-text2: 500;
+  --yellow: #37A04E;   /* Categoría: Comedia */
+--green: #24CA48;    /* Categoría: Aventura */
+--aqua: #02F536;     /* Categoría: Ciencia Ficción */
+--lightBlue: #3C7548;/* Categoría: Drama */
+--darkBlue: #334B38; /* Categoría: Acción */
+--red: #2B332D;      /* Categoría: Terror */
+
 }
 
-html {
-  background-color: var(--purple-medium-3);
-}
+
 
 body {
-  background-color: var(--purple-light-1);
-  color: var(--purple-dark-2);
-  font-family: var(--font-family-text);
-  font-weight: var(--font-weight-text1);
-  font-size: 16px;
-  margin: 4px 0 0 0;
+  
+  font-family: "Alata", serif;
+  font-weight: 400;
+  font-style: normal;
   padding: 0;
+  margin:0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), #334B38);
+  color: var(--white)
 }
 
 h1, h2, h3 {
@@ -66,16 +67,22 @@ h3 {
 }
 
 input {
-  background-color: var(--purple-light-2);
-  color: var(--purple-medium-2);
+  background-color: transparent;
+  color: var(--white);
   border: none;
-  font-size: 18px;
   padding-left: 16px;
+  font-size: 14px;
+  font-weight: 100;
+  color: var(--white);
+ 
 }
 
 input::placeholder {
-  color: var(--purple-medium-1);
-  font-family: var(--font-family-text);
+  color: var(--white);
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 100;
+  opacity: 0.5;
 }
 
 button {
@@ -96,22 +103,106 @@ button {
       movie-img */
 
 /* Shared */
-.header-container, .trendingPreview-header, .categoriesPreview-container,  {
-  padding: 0px 24px;
+ .trendingPreview-header,  {
+  padding: 40px 0 20px 0;
+  display: flex;
+  flex-direction: column;
 
 }
 
-.trendingPreview-container, .categoriesPreview-container, footer,  {
-  margin-top: 48px;
+
+
+
+
+.categoriesPreview-container{
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column; 
+  color: var(--dark);
+  align-items:center;
 }
+
+
+
+.categoriesPreview-title {
+  margin-bottom: 0px;
+  text-align: center; 
+  color:var(--white);
+  font-size: 24px;
+}
+
+.categoriesPreview-subtitle {
+  margin-bottom: 24px;
+  font-size: 14px;
+    font-weight: 200;
+    width: 85%;
+    text-align: justify;
+  color: var(--white)
+}
+
+.categoriesPreview-list{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  column-gap: 28px;
+  
+  
+  
+
+}
+
+.category-container{
+
+}
+
+.category-title {
+  margin-bottom: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: auto;
+  text-overflow: ellipsis;
+  color: var(--white)
+}
+
+.category-title::before {
+  content: '$$/';
+  color: transparent;
+  /* TODO: cambiar color por ID de la categoria */
+  background:var(--idColor);
+  border-radius: 100%;
+  margin-right: 8px;
+  width: 6px;
+  height: 6px;
+}
+
+#id28 { --idColor: var(--primary); }          /* Animación */
+#id12 { --idColor: var(--accent-dark); }      /* Aventura */
+#id16 { --idColor: var(--emerald); }          /* Fantasía */
+#id35 { --idColor: var(--secondary); }        /* Comedia */
+#id80 { --idColor: var(--dark-green); }       /* Crimen */
+#id99 { --idColor: var(--secondary-light); }  /* Documental */
+#id18 { --idColor: var(--dark-olive); }       /* Drama */
+#id10751 { --idColor: var(--primary-light); } /* Familia */
+#id14 { --idColor: var(--accent-dark); }      /* Fantasía */
+#id36 { --idColor: var(--secondary-light); }  /* Historia */
+#id18 { --idColor: var(--dark-green); }       /* Drama (duplicado, corregido) */
+#id9648 { --idColor: var(--emerald); }        /* Misterio */
+#id27 { --idColor: var(--dark-1); }           /* Terror */
+#id10402 { --idColor: var(--emerald); }     /* Música */
+#id10749 { --idColor: var(--accent-dark); }   /* Romance */
+
+#id878 { --idColor: var(--primary); }         /* Ciencia Ficción */
+#id10770 { --idColor: var(--dark-3); }        /* Película de TV */
+#id53 { --idColor: var(--dark-olive); }       /* Suspenso */
+#id10752 { --idColor: var(--dark-green); }    /* Bélica */
+#id37 { --idColor: var(--dark-2); }           /* Western */
+
+
 
 .liked-container{
-  padding: 48px 0;
+  padding: 32px 0;
 }
 
-.trendingPreview-header, .categoriesPreview-title {
-  margin-bottom: 24px;
-}
+ 
 
 .movie-container {
   cursor: pointer;
@@ -127,26 +218,41 @@ button {
   display:flex;
   justify-content:center;
   align-items: center;
-  top: 8px;
-  right: 10px;
-  width: 35px;
-  height: 35px;
-  border-radius: 30px;
-  background: var(--purple-medium-3)
+  
+  top: 4px;
+  right: 4px;
+  color: var(--white)
+  transition: transform 300ms ease-in-out;
 }
 
+.liked-btn.liked-btn--toggle {
+  transform: scale(1.2);
+}
+
+.liked-btn:not(.liked-btn--toggle) {
+  transform: scale(1);
+}
+
+
+
+
 .liked-btn--toggle{
-  background: var(--purple-light-2)
+  color: var(--accent)
 }
 
 .liked-btn.liked-btn--toggle::before{
-  content: '💜' ;
+  content: '💚' ;
   
 }
 
 .liked-btn::before{
   content: '🤍' ;
-  font-size: 19px;
+  font-size: 22px;
+}
+
+.trendingPreview-container{
+  padding: 32px 0;
+  
 }
 
 .movie-img {
@@ -164,7 +270,7 @@ button {
   height: 230px;
 }
 
-.categoriesPreview-list, .categories-list {
+ .categories-list {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -176,66 +282,141 @@ button {
 
 /* Header */
 .header-container {
-  padding-top: 40px;
+  padding-top: 58px;
+  display:flex;
+  flex-direction: column;
+  
 }
 
-.header-container--long {
+ .header-container--long {
+  
   background-image: url('https://pics.filmaffinity.com/Deadpool-777527803-large.jpg');
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 19.27%, rgba(0, 0, 0, 0) 29.17%), url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
   background-size: cover !important;
-  height: 480px;
-  position: fixed;
-  top: 0;
-  width: 100%;
+  height: 70vh;
+  image-rendering: -webkit-optimize-contrast; /* Mejora la calidad */
+
 }
 
-.header-container--categoryView {
+/* .header-container--categoryView {
   background: linear-gradient(180deg, rgba(238, 204, 117, 0.5) 0%, rgba(238, 204, 117, 0) 72.92%);
-} 
+}   */
 
 .header-title {
   margin-bottom: 16px;
+  text-align: center;
+  color: var(--white)
+}
+
+.header--subtitle{
+  font-size: 14px;
+  font-weight: 200;
+  width: 85%;
+  text-align: justify;
+  color: var(--white);
+  align-self:center
+  
 }
 
 .header-arrow {
   font-weight: var(--font-weight-text2);
-  font-size: 36px;
+  font-size: 32px;
   margin-bottom: 16px;
   cursor: pointer;
   display: inline-block;
+  position: absolute;
+  top:2px;
+  left: 12px;
 }
 .header-arrow--white {
   color: var(--purple-light-1);
 }
 
 .header-searchForm {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 85%;
+    flex-wrap: nowrap;
+    align-self: center;
+    
+    border-radius: 8px;
+    position: relative;
+    
+
 }
+
+.input-container {
+  position: relative;
+  width: 100%;
+  transition: box-shadow 0.3s ease; /* Añadido para suavizar la transición */
+  border-radius: 8px;
+  border: 1px solid var(--dark-1);
+}
+
+#searchInput {
+  width: 100%;
+  height: 48px;
+  padding-left: 30px; /* Ajusta esto para darle espacio al ícono */
+  
+  border-radius: 8px;
+}
+
+#searchBtn {
+  position: absolute;
+  right: 4px; /* Posiciona el ícono al lado izquierdo */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+/* Estilo cuando el input está en foco */
+.focused {
+  box-shadow: 0 1px 2px var(--accent);
+  transform: scale(1.01)
+   /* Cambia el color y la opacidad según tus preferencias */
+}
+
+
 
 .header-searchForm input {
   height: 48px;
   width: 100%;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border:none;
+  outline: none;
+  
 }
+
+.header-searchForm input:placeholder {
+  color: var(--white);
+  
+}
+
+
+
 .header-searchForm button {
   width: 56px;
   height: 48px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  
 }
 
 
 /* Trending */
-.trendingPreview-header, .liked-header {
+
+.liked-header{
+ 
+  padding-bottom: 24px;
+  text-align: center;
+  color:var(--white)
+}
+
+
+.trendingPreview-header{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
+  justify-content: center;
+  padding: 0 0 20px 0;
+  
 }
 
 .trendingPreview-btn {
@@ -244,16 +425,34 @@ button {
   width: 72px;
 }
 
-.trendingPreview-movieList, .liked-content {
-  display: flex;
-  gap: 10px;
-  overflow-x: scroll;
-  overflow-y: auto;
-  white-space: nowrap;
-  height: 241px;
-  padding-left: 24px;
-  padding-bottom: 16px;
+.separator {
+  width: 70%;
+  margin: 0 auto;
+  height: 1px; /* Para definir la altura de la barra */
+  background-image: linear-gradient(to right, #ffff, #02F536);
+  background-size: 200% 100%; /* Ajusta el tamaño del gradiente */
+  background-position: 100% 0; /* Comienza desde la derecha */
+  animation: pulse 1.5s infinite ease-in-out;
 }
+
+@keyframes pulse {
+  0% {
+    background-position: 100% 0;
+    transform: scaleX(1)
+  }
+  50% {
+    background-position: 0 0; /* Mueve el gradiente hacia la izquierda */
+    transform: scaleX(1.05)
+  }
+  100% {
+    background-position: 100% 0;
+    transform: scaleX(1)
+  }
+}
+
+
+
+
 
 .trendingPreview-movieList .movie-container {
   display: inline-block;
@@ -278,50 +477,66 @@ button {
   width: 45%;
 } */
 
-.category-title {
-  margin-bottom: 8px;
-  cursor: pointer;
-  white-space: nowrap;
-  overflow: auto;
-  text-overflow: ellipsis;
-}
 
-.category-title::before {
-  content: 'â€¢â€¢â€¢â€¢';
-  color: transparent;
-  /* TODO: cambiar color por ID de la categoria */
-  background-color: var(--idColor);
-  border-radius: 8px;
-  margin-right: 8px;
-  width: 8px;
-  height: 8px;
-}
-#id28 { --idColor: var(--yellow); }
-#id12 { --idColor: var(--red); }
-#id16 { --idColor: var(--green); }
-#id35 { --idColor: var(--lightBlue); }
-#id80 { --idColor: var(--darkBlue); }
-#id99 { --idColor: var(--purple-dark-1); }
-#id18 { --idColor: var(--purple-medium-1); }
-#id10751 { --idColor: var(--yellow); }
-#id14 { --idColor: var(--red); }
-#id36 { --idColor: var(--green); }
-#id27 { --idColor: var(--lightBlue); }
-#id10402 { --idColor: var(--darkBlue); }
-#id9648 { --idColor: var(--purple-dark-1); }
-#id10749 { --idColor: var(--purple-medium-1); }
-#id878 { --idColor: var(--yellow); }
-#id10770 { --idColor: var(--red); }
-#id53 { --idColor: var(--green); }
-#id10752 { --idColor: var(--lightBlue); }
-#id37 { --idColor: var(--darkBlue); }
 
 
 /* Generic List (search, trending & category) */
 
 .main-container{
   overflow: auto;
+  position: relative;
+  
 }
+
+#languages{
+  position: absolute;
+  top: 12px;
+  right: 12px; 
+}
+
+#languageoptions{
+  padding: 8px 30px 8px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--primary);
+  background: transparent;
+  outline: none;
+  transition: all 300ms linear;
+  color: var(--white);
+  appearance: none; /* Oculta la flecha por defecto */
+  -webkit-appearance: none; /* Safari */
+  -moz-appearance: none; /* Firefox */
+}
+
+#languages::after {
+  content: "▼"; /* Flecha personalizada */
+  font-size: 12px;
+  color: #37A04E; /* Color verde */
+  position: absolute;
+  right: 10px; /* Ajusta la posición de la flecha */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* No afecta la interacción */
+}
+
+#languageoptions option{
+  color: black;
+  background: var(--white);
+  padding: 20px;
+}
+
+#languageoptions:focus{
+  box-shadow: 0 2px 4px 0 #3C7548, 0 2px 1px 0 #37A04E;
+}
+
+
+
+
+
+
+
+
+
+
 .genericList-container {
   display: flex;
   align-items: center;
@@ -339,16 +554,19 @@ button {
   width: 100%;
 }
 
+.trendingPreview-title{
+  color: var(--white)
+  
+}
+
 
 /* Movie Detail */
 .movieDetail-container {
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  /* border-top-left-radius: 16px;
+  border-top-right-radius: 16px; */
   padding: 32px 24px;
-  margin-top: 403px;
   z-index: 1;
-  position: absolute;
-  background-color: var(--purple-light-1);
+  background: var(--dark-3); 
 }
 
 .movieDetail-title {
@@ -377,20 +595,14 @@ button {
 .relatedMovies-container {
   margin-top: 24px;
   height: 216px;
+  position: relative;
 }
 
 .relatedMovies-title {
   margin-bottom: 16px;
 }
 
-.relatedMovies-scrollContainer {
-  position: absolute;
-  overflow-x: scroll;
-  overflow-y: auto;
-  white-space: nowrap;
-  width: calc(100vw - 24px);
-  padding-bottom: 16px;
-}
+
 
 .relatedMovies-scrollContainer .movie-container {
   display: inline-block;
@@ -406,6 +618,219 @@ button {
   max-height: 187.5px;
  
 }
+
+
+
+/* Contenedor general del carrusel */
+.carousel-wrapper, .liked-wrapper, .relatedMoviesContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.left-arrow {
+  left: -24px;
+}
+
+.right-arrow {
+  right: -24px;
+}
+
+@media (min-width: 680px) {
+  .carousel-wrapper, .liked-wrapper {
+    width: 65%;
+  }
+
+  .main-container{
+    width: 65%;
+    margin: 0 auto;
+  }
+
+  .header-container--long {
+    
+  }
+
+  .header-arrow{
+    left: 19%
+  }
+
+  #languages{
+    right: 19%;
+  }
+
+  .main-container footer{
+    background:var(--dark-3);
+  }
+
+
+  
+
+  .categoriesPreview-title{
+    font-size: 28px;
+  }
+
+  .categoriesPreview-subtitle {
+    margin-bottom: 24px;
+    font-size: 18px;
+      font-weight: 200;
+      width: 65%;
+      align-self:center;
+      text-align: justify;
+       color: var(--white)
+  }
+
+  .categoriesPreview-list{
+   
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 0px;
+    row-gap: 8px;
+    padding-top:16px;
+    width:65%;
+    align-self: center;
+  }
+
+  .categoriesPreview-container{
+    align-items: normal;
+  }
+
+  
+
+  .separator{
+    width: 30%
+  }
+
+  .left-arrow {
+    left: -30px;
+  }
+  
+  .right-arrow {
+    right: -30px;
+  }
+  .header--subtitle{
+    font-size: 18px;
+    font-weight: 200;
+    width: 65%;
+    text-align: justify;
+    color: var(--white);
+    align-self:center
+    
+  }
+
+  .header-title{
+    font-size: 32px;
+  
+  }
+
+  .trendingPreview-title{
+    font-size: 22px;
+  }
+
+  .header-searchForm {
+    width: 45%;
+}
+
+
+@media(min-width: 1200px){
+  .categoriesPreview-list{
+
+    grid-template-columns: repeat(4,1fr);
+    
+  }
+
+}
+
+
+
+
+
+
+input {
+  background-color: transparent;
+  color: var(--white);
+  border: none;
+  font-size: 16px;
+  padding-left: 16px;
+  font-weight: 100;
+  
+}
+
+input::placeholder {
+  color: var(--white);
+  font-size: 15px;
+  letter-spacing: 1px;
+  
+  opacity: 0.5;
+}
+
+}
+
+/* Contenedor de películas: se despliega en fila y se oculta el overflow */
+.trendingPreview-movieList , .liked-content , .relatedMovies-scrollContainer {
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+/* Cada elemento de la película (loader o imagen) */
+.movie-container__loading {
+  border-radius: 8px;
+  background-color: var(--primary); /* o el color que desees de la paleta */
+  /* Se usará flex-basis para controlar el ancho según el viewport */
+}
+
+/* Para mobile: 3 películas por vista */
+@media (max-width: 768px) {
+  .movie-container__loading {
+    flex: 0 0 calc((100% - 20px) / 3);
+  }
+}
+
+/* Para desktop: 4 películas por vista */
+@media (min-width: 769px) {
+  .movie-container__loading {
+    flex: 0 0 calc((100% - 30px) / 4);
+  }
+}
+
+/* Estilos para las flechas de navegación */
+.carousel-arrow {
+  border: none;
+  background: var(--dark-2);
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--accent);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  
+  /* Centrar el contenido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Elimina o ajusta el padding si es necesario */
+  padding: 0;
+}
+
+.carousel-arrow:active, .carousel-arrow:hover {
+  color: var(--dark-2);
+  background: var(--secondary);
+  transition: all 300ms linear;
+}
+
+
+
+
+
   
 
 /* Footer */

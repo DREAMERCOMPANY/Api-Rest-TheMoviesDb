@@ -143,3 +143,6 @@ Guardar peliculas en localStorage:
 -manera de guardar las peliculas: {'liked_movies': {//Objeto con cada uno de los atributos de las peliculas}, {}, {}, {}}
 -Donde llamar la funcion: cuando se crea una pelicula , en donde se esta creando el boton de like de cada pelicula
  
+
+Tareas 28/02/2025:
+-Organizar pagina del #home e interactuarla con las otras secciones, seguir el mismo patron de diseño

@@ -1,7 +1,7 @@
 import API_KEY from "./secrets.mjs";
 import domElements from "./nodes.mjs";
 
-import homePage from "./navigation.mjs";
+import { homePage, carrouselScroll } from "./navigation.mjs"; 
 
 // Variables globales para manejar la paginación y evitar llamadas simultáneas
 let page = 1;
@@ -61,7 +61,8 @@ const countries = [
     countries.forEach((country) => {
       const languageOption = document.createElement('option');
       languageOption.setAttribute('value', country.language);
-      languageOption.textContent = `${country.flag} ${country.name}`;
+      languageOption.innerHTML = `${country.flag}&nbsp;&nbsp;${country.name}`;
+
       if (country.language === lang) {
         languageOption.selected = true;
       }
@@ -163,16 +164,43 @@ function likeMovie(movie){
 
     //Obtener las peliculas del localStorage
 
-    function getLikedMovies(){
-        //Obtiene las peliculas a las que se le han dado like
-        const moviesLiked = likedMoviesList()
-        //Transforma esas peliculas a un arreglo
-        const arrMoviesLiked = Object.values(moviesLiked)
-    
-        //Llamor al contenedor para meter esas peliculas que se le han dado like
-        const movieLikedContainer = document.querySelector('.liked-content')
-        createMovie(movieLikedContainer, arrMoviesLiked,{lazy:true, clean:true})
+    function validateLikedContainer(){
+        const movieLikedContainer = document.querySelector('.liked-content');
+
+        const isContainerEmpty = movieLikedContainer && movieLikedContainer.innerHTML.trim() === ''
+        
+        if(isContainerEmpty){
+            movieLikedContainer.innerText = 'empty'
+        }else{
+            getLikedMovies()
+            
+            
+        }
+            // Si el contenedor tiene contenido, obtiene las películas a las que se les ha dado like
+          
     }
+
+
+    
+
+
+    function getLikedMovies() {
+        const movieLikedContainer = document.querySelector('.liked-content');
+        console.log('Contenedor encontrado:', movieLikedContainer);
+      
+        const moviesLiked = likedMoviesList();
+        console.log('Películas con like:', moviesLiked);
+      
+        const arrMoviesLiked = Object.values(moviesLiked);
+        console.log('Arreglo de películas:', arrMoviesLiked);
+      
+        createMovie(movieLikedContainer, arrMoviesLiked, { lazy: true, clean: true });
+      
+        // Verificar si el contenedor tiene contenido
+        console.log('Contenido del contenedor después de createMovie:', movieLikedContainer.innerHTML);
+        
+        carrouselScroll(movieLikedContainer);
+      }
 
 // Definición de las opciones para el IntersectionObserver (lazy loading)
 const options = {
@@ -235,9 +263,10 @@ function createMovie(container, arr, { lazy = false, clean = true } = {}) {
             //movie es cada uno de los elementos que devuelve la solicitud a la API en un objeto
             console.log(movie);
             
-            
+           
             likeMovie(movie)
             getLikedMovies()
+            validateLikedContainer()
             updateLikeButtons()
             
             
@@ -312,6 +341,7 @@ async function getTrendingMoviesPreview() {
     console.log({ data, movies });
     const trendindPreviewMoviesContainer = document.querySelector('#trendingPreview .trendingPreview-movieList');
     createMovie(trendindPreviewMoviesContainer, movies, { lazy: true });
+    carrouselScroll(trendindPreviewMoviesContainer)
 }
 
 async function getMoviesByCategory(id) {
@@ -367,6 +397,9 @@ async function getMovieDetailById(id) {
     headerImg.style.backgroundRepeat = "no-repeat";
     console.log(headerImg);
     const categoryList = document.querySelector('.categories-list');
+    console.log(categoryList);
+    console.log(movie.genres);
+    
     getCategories(categoryList, movie.genres);
     domElements.forEach(el => {
         const title = el.elements?.movieDetailTitle;
@@ -385,6 +418,7 @@ async function getRelatedMovieById(id) {
     const relatedMovies = data.results;
     const relatedMoviesContainer = document.querySelector('.relatedMovies-scrollContainer');
     createMovie(relatedMoviesContainer, relatedMovies, { lazy: true });
+    carrouselScroll(relatedMoviesContainer)
 }
 
 //---------------------------------
@@ -474,5 +508,6 @@ export {
     getPaginatedMoviesBySearch, 
     getPaginatedMoviesByCategory,
     getLikedMovies,
-    getLanguages
+    getLanguages,
+    validateLikedContainer
 };
