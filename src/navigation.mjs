@@ -8,6 +8,7 @@ import domElements from './nodes.mjs'
 
 
 
+
 function carrouselScroll(container) {
     // Busca las flechas dentro del contenedor específico
     const leftArrow = container.parentElement.querySelector('.left-arrow');
@@ -101,10 +102,10 @@ function loadersSkeleton(){
     
     setTimeout(()=>{
         titlePreview.classList.remove('trendingPreview-title--loading')
-        titlePreview.innerText = 'Tendencias'
+        //titlePreview.innerText = 'Tendencias'
         //btnTrending.classList.remove('trendingPreview-btn--loading')
         //btnTrending.innerText = 'Ver más'
-    }, 200)
+    }, 350)
 }
 
 
@@ -279,17 +280,20 @@ function getMovieDetailsPage(){
     domElements.forEach(element => {
 
         const headerSection = element.sections?.headerSection;
+        const footer = element.sections?.footer
+        const mainContainer = element.sections?.mainContainer
+        const headerArrow = element.elements?.headerArrow
+        const selectLanguage = element.elements?.languagesSelect
 
-        if (headerSection) {
-            headerSection.classList.add('header-container--long');
-            //headerSection.style.background = 'none';
-            }
-
-            const footer = element.sections?.footer
-
-        if(footer){
-            footer.style.background = '#2B332D'
-        }
+        if (headerSection) headerSection.classList.add('header-container--long');
+        if(footer) footer.style.background = '#2B332D'
+        if (mainContainer) mainContainer.style.position = 'static';
+        if(headerArrow && window.innerWidth >= 681) headerArrow.style.left = '19%'
+        if(selectLanguage && window.innerWidth >= 681) selectLanguage.style.right = '19%'
+            
+        
+            
+        
         
         element.elements?.arrowBtn.classList.remove('inactive')
         element.elements?.arrowBtn.classList.add('header-arrow--white')
@@ -298,26 +302,19 @@ function getMovieDetailsPage(){
         element.elements?.separator.forEach(el => {el.classList.add('inactive')})
         element.elements?.headerCategoryTitle.classList.add('inactive')
         element.listContainers?.searchForm.classList.add('inactive')
-
         element.sections?.trendingPreviewSection.classList.add('inactive')
         element.sections?.likedMoviesContainer.classList.add('inactive')
-       
-
         element.sections?.categoriesPreviewSection.classList.add('inactive')
         element.sections?.genericSection.classList.add('inactive')
         element.sections?.movieDetailSection.classList.remove('inactive')
 
-        // ✅ Validar si mainContainer existe antes de acceder a style
-        if (element.sections?.mainContainer) {
-            element.sections.mainContainer.style.position = 'static';
-            
-        }
+        
     })
 }
 
 function movieDetailsPage(){
     getMovieDetailsPage()
-    //alert('details movies!')
+   
 
     //#movie=1212142
     const [_, movieID] = location.hash.split('=')
@@ -402,7 +399,7 @@ function trendsPage(){
     infiniteScrolling = getPaginatedTrendingMovies
 }
 
-export {homePage, carrouselScroll} 
+export {navigator, carrouselScroll} 
 
 
 

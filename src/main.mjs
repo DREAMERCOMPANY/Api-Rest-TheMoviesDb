@@ -1,7 +1,8 @@
 import API_KEY from "./secrets.mjs";
 import domElements from "./nodes.mjs";
 
-import { homePage, carrouselScroll } from "./navigation.mjs"; 
+import { navigator, carrouselScroll } from "./navigation.mjs"; 
+import updateLanguages from "./translations.mjs";
 
 // Variables globales para manejar la paginación y evitar llamadas simultáneas
 let page = 1;
@@ -13,6 +14,8 @@ let isLoading = false;  // Flag para evitar múltiples llamadas concurrentes
 //API
 
 let lang = 'es-ES'; // Por defecto español
+
+
 const api = axios.create({
   baseURL: 'https://api.themoviedb.org/3/',
   headers: {
@@ -27,6 +30,8 @@ const api = axios.create({
 //OBJETO DE LOS IDIOMAS
 
 const selectOptions = document.getElementById('languageoptions')
+
+
 
 const countries = [
     {
@@ -55,6 +60,8 @@ const countries = [
       flag: '🇨🇳',
     },
   ];
+
+  
   
 
   async function getLanguages() {
@@ -65,6 +72,7 @@ const countries = [
 
       if (country.language === lang) {
         languageOption.selected = true;
+        updateLanguages(lang)
       }
       selectOptions.appendChild(languageOption);
     });
@@ -72,14 +80,16 @@ const countries = [
 
   selectOptions.addEventListener('change', (e) => {
     lang = e.target.value;
+    
     // Actualiza el parámetro de lenguaje en el objeto api
     api.defaults.params.language = lang;
     console.log('Idioma actualizado a:', lang);
     // Llama a homePage para refrescar las consultas con el nuevo idioma
-    homePage();
+    navigator()
+    updateLanguages(lang)
   });
   
-  //getLanguages();
+  
 
 
 
@@ -166,13 +176,30 @@ function likeMovie(movie){
 
     function validateLikedContainer(){
         const movieLikedContainer = document.querySelector('.liked-content');
-
-        const isContainerEmpty = movieLikedContainer && movieLikedContainer.innerHTML.trim() === ''
         
+        const isContainerEmpty = movieLikedContainer && movieLikedContainer.innerHTML.trim() === ''
+        const arrowLeft = document.querySelector('#liked-arrowLeft');
+        const arrowRight = document.querySelector('#liked-arrowRight')
+        const likeTitle = document.querySelector('.liked-title')
+
+        
+
         if(isContainerEmpty){
-            movieLikedContainer.innerText = 'empty'
+            //const text = document.createElement('p')
+            //text.innerText = 'Aun no tienes peliculas en favoritos'
+            arrowLeft.style.display = 'none'
+            arrowRight.style.display = 'none'
+            likeTitle.style.display = 'none'
+            movieLikedContainer.style.display = 'flex'; // Asegúrate de que el contenedor sea un contenedor flexible
+            movieLikedContainer.style.justifyContent = 'center'; // Asegúrate de poner el valor como una cadena
+            movieLikedContainer.style.alignItems = 'center';
+            //movieLikedContainer.appendChild(text) // Asegúrate de poner el valor como una cadena
+            
         }else{
             getLikedMovies()
+            likeTitle.style.display = 'block'
+            arrowLeft.style.display = 'block'
+            arrowRight.style.display = 'block'
             
             
         }

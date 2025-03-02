@@ -29,6 +29,8 @@ const domElements = [
     {
         'elements':{
             'headerTitle' : document.querySelector('.header-title'),
+            'headerArrow': document.querySelector('.header-arrow'),
+            'languagesSelect': document.querySelector('#languages'),
             'headerSubtitle': document.querySelector('.header--subtitle'),
             'separator': document.querySelectorAll('.separator'),
             'arrowBtn' : document.querySelector('.header-arrow'),
