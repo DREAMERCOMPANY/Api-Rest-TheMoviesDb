@@ -129,5 +129,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-#Secrets.js (API_KEY)
-src/secrets.mjs
+#Variables de entorno
+.env

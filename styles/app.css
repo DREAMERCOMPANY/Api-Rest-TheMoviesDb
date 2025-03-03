@@ -221,7 +221,7 @@ button {
   
   top: 4px;
   right: 4px;
-  color: var(--white)
+  color: var(--white);
   transition: transform 300ms ease-in-out;
 }
 
